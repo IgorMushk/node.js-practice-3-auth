@@ -1,24 +1,17 @@
-### node.js-practice-2-mongodb
+### node.js-practice-3-auth
 
-#### GET http://localhost:8000/contacts  
-
-#### POST http://localhost:8000/contacts
-{  
-  "name": "Sun Sun",  
-  "number": "000-12-34"  
+#### POST http://localhost:8000/users/signup
+{ 
+    "name": "igor",  
+    "email": "mail@mail.net",  
+    "password": "123456"  
 }  
 
-#### DELETE http://localhost:8000/contacts/:contactId
+#### POST http://localhost:8000/users/login
+{
+    "email": "mail@mail.net",
+    "password": "123456"
+}
 
-#### GET http://localhost:8000/contacts/:contactId
-
-#### PUT http://localhost:8000/contacts/:contactId
-{  
-    "name": "Jacob Mercer POST",  
-    "number": "761-23-96-888"  
-}  
-
-#### PATCH http://localhost:8000/contacts/:contactId/contactName
-{  
-    "name": "Jacob Mercer PATCH"  
-}  
+Frontend 
+https://github.com/IgorMushk/node.js-practice-3-auth-frontend-hw8
