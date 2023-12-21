@@ -31,6 +31,33 @@ await User.findByIdAndUpdate(newUser._id,  {token});
   })
 };
 
+const signin = async (req, res) => {
+    const {email, password} = req.body;
+    const user = await User.findOne({email})
+    if (!user) {
+        res.status(401).json({message: "Email or password invalid"});
+        return;
+    }
+
+    const checkPassword = await user.checkPassword(password);
+    if (!checkPassword) {
+        res.status(401).json({message: "Email or password invalid"});
+        return;
+    }
+
+    const payload = {
+        id: user._id,
+      }
+    const token = jwt.sign(payload, SECRET_KEY);
+
+    await User.findByIdAndUpdate(user._id, {token});
+
+    res.json({
+        token, user: {name: user.name, email, avatar: user.avatar}
+      })
+}
+
 module.exports = {
     signup,
+    signin,
 }
